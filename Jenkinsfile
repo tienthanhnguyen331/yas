@@ -27,7 +27,7 @@ pipeline {
                 sh 'java -version'
                 
                 echo 'Đang chạy Unit Test và tạo report Coverage cho toàn bộ dự án...'
-                sh 'mvn clean test jacoco:report -Dmaven.test.failure.ignore=true || true'        
+                sh 'mvn clean test jacoco:report -DskipITs -Dsurefire.excludes="**/*IT.java"'      
             }
         }
 
