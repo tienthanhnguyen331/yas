@@ -21,20 +21,20 @@ pipeline {
             }
         }
 
-        stage('Test & Coverage') {
+      stage('Test & Coverage') {
             steps {
                 echo 'Đang kiểm tra phiên bản Java...'
                 sh 'java -version'
                 
                 echo 'Đang chạy Unit Test và tạo report Coverage cho toàn bộ dự án...'
-                sh "mvn clean test jacoco:report '-Dsurefire.excludes=**/*IT.java,**/*IT\$*.java,**/ProductCdcConsumerTest.java,**/ProductVectorRepositoryTest.java,**/VectorQueryTest.java'"  
+                sh "mvn clean test jacoco:report '-Dsurefire.excludes=**/*IT.java,**/*IT\$*.java,**/ProductCdcConsumerTest.java,**/ProductVectorRepositoryTest.java,**/VectorQueryTest.java'"
             }
         }
 
         stage('Build') {
             steps {
                 echo 'Đang đóng gói toàn bộ ứng dụng (Bỏ qua test vì đã chạy ở stage trước)...'
-                sh 'mvn package -DskipTests'
+                sh 'mvn package -DskipTests -DskipCompile=false'
             }
         }
     }
