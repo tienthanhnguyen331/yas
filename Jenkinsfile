@@ -27,8 +27,7 @@ pipeline {
                 sh 'java -version'
                 
                 echo 'Đang chạy Unit Test và tạo report Coverage cho toàn bộ dự án...'
-                sh 'mvn clean test jacoco:report -Dtest=!ProductCdcConsumerTest -DfailIfNoTests=false'
-            }
+                sh 'mvn clean test jacoco:report -Dtest=!ProductCdcConsumerTest -Dsurefire.failIfNoSpecifiedTests=false'            }
         }
 
         stage('Build') {
